@@ -1,0 +1,48 @@
+*{margin: 0;padding: 0;}
+
+body,html{
+    width: 100%;
+    height: 100%;
+}
+body{
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+}
+#logInContainer{
+    width: 100%;
+    height: auto;
+    grid-column: 2/4;
+    grid-row: 2/4;
+}
+::placeholder{
+    color: white;
+}
+input{
+    position: absolute;
+    width: 20.5em;
+    height: 3em;
+    background: #a64a06;
+    border: 0;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    left: 49.5%;
+}
+#user{
+    top: 50.5%;
+}
+#pass{
+    top: 56.5%;
+}
+button{
+    position: absolute;
+    width: 11em;
+    height: 5em;
+    top: 49.5%;
+    left: 65%;
+    opacity: 0;
+}
+button:hover{
+    cursor: pointer;
+}
