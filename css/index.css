@@ -11,36 +11,40 @@ body{
     grid-template-rows: repeat(4,1fr);
 }
 #logInContainer{
-    width: 100%;
-    height: auto;
+    width: 838px;
+    height: 603px;
     grid-column: 2/4;
     grid-row: 2/4;
+    background-image: url(../images/MaplestoryLogin.png);
+    background-repeat: no-repeat;
+    margin-left: 4em;
+    margin-top: 1em;
 }
 ::placeholder{
     color: white;
 }
 input{
     position: absolute;
-    width: 20.5em;
-    height: 3em;
+    width: 18.2em;
+    height: 2.5em;
     background: #a64a06;
     border: 0;
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    left: 49.5%;
+    left: 49.7%;
 }
 #user{
-    top: 50.5%;
+    top: 51.5%;
 }
 #pass{
     top: 56.5%;
 }
 button{
     position: absolute;
-    width: 11em;
+    width: 10em;
     height: 5em;
     top: 49.5%;
-    left: 65%;
+    left: 63%;
     opacity: 0;
 }
 button:hover{
