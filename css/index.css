@@ -12,6 +12,7 @@ body{
 }
 #idTitle{
     grid-column: 2/4;
+    color: whitesmoke;
 }
 #logInContainer{
     width: 838px;
@@ -27,12 +28,16 @@ body{
 #formContainer{
     grid-column: 2/4;
     grid-row: 2/4;
-    height: 150px;
+    height: 190px;
     width: 40%;
     margin:auto;
     background-color: rgba(166, 74, 6, 0.5);
     z-index: 1;
+    text-align: center;
+    color: white;
+    font-family:monospace;
 }
+
 form{
     height: 100%;
     width: 50%;

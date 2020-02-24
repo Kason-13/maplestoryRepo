@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+    require_once("partial/header.php");
+?>
     <script src="js/cssManip/js/jQuery.js"></script>
     <script src="js/cssManip/js/cssManip.js"></script>
     <script src="js/cssManip/js/index.js"></script>
@@ -18,6 +16,7 @@
             <h2>Maple Story Edition</h2>
         </div>
         <div id="formContainer">
+            <h1>A new world ahead</h1>
             <form action="index.html" method="POST">
                 <input type="text" name="username" id="user" placeholder="Username">
                 <input type="password" name="password" id="pass"  placeholder="password">
@@ -25,4 +24,5 @@
             </form>
         </div>
 </body>
-</html>
+<?php
+    require_once("partial/footer.php");
