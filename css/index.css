@@ -10,6 +10,9 @@ body{
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(4,1fr);
 }
+#idTitle{
+    grid-column: 2/4;
+}
 #logInContainer{
     width: 838px;
     height: 603px;
@@ -19,33 +22,50 @@ body{
     background-repeat: no-repeat;
     margin-left: 4em;
     margin-top: 1em;
+    z-index: 0;
+}
+#formContainer{
+    grid-column: 2/4;
+    grid-row: 2/4;
+    height: 150px;
+    width: 40%;
+    margin:auto;
+    background-color: rgba(166, 74, 6, 0.5);
+    z-index: 1;
+}
+form{
+    height: 100%;
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 ::placeholder{
     color: white;
 }
 input{
-    position: absolute;
-    width: 18.2em;
+    width: 15em;
     height: 2.5em;
     background: #a64a06;
     border: 0;
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    left: 49.7%;
+    text-align: center;
 }
 #user{
-    top: 51.5%;
-}
-#pass{
-    top: 56.5%;
+    margin: 1em 0;
 }
 button{
-    position: absolute;
-    width: 10em;
-    height: 5em;
-    top: 49.5%;
-    left: 63%;
-    opacity: 0;
+    width: 8em;
+    height: 2em;;
+    margin:auto;
+    background-color: black;
+    color: whitesmoke;
+    border: 0;
+}
+button:hover{
+    background-color: #a64a06;
+    color: black;
 }
 button:hover{
     cursor: pointer;
