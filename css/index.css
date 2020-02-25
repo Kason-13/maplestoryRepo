@@ -13,6 +13,12 @@ body{
 #idTitle{
     grid-column: 2/4;
     color: whitesmoke;
+    padding-top: 15%;
+}
+#idTitle h1,#idTitle h2{
+    width: 50%;
+    margin:auto;
+    text-align: center;
 }
 #logInContainer{
     width: 838px;
