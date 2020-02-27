@@ -1,13 +1,14 @@
 <?php
-    session_start();
-    function execute(){
-        $isEmpty = false;
-        $authValidity = false;
-        if(!empty($_POST)){
-            $isEmpty = true;
-            if($_POST["username"] === "testUser" && $_POST["password"] == "AAAaaa111")
-                    $authValidity = true;
+    require_once("action/CommonAction.php");
+
+    class IndexAction extends CommonAction {
+
+        public function __construct() {
+            parent::__construct(CommonAction::$VISIBILITY_);
         }
-        return compact("isEmpty","authValidity");
+
+        protected function executeAction() {
+
+            return [];
+        }
     }
-?>
