@@ -1,13 +1,8 @@
 <?php
     require_once("partial/header.php");
     require_once("Action/IndexAction.php");
-    $data = execute();
-    if(!empty($data)){
-        if($data["authValidity"] === true){
-            header("location:lobby.php");
-            exit;
-        }
-    }
+    $indexAction = new IndexAction();
+    $data = $indexAction->execute();
 ?>
     <script src="js/cssManip/js/jQuery.js"></script>
     <script src="js/cssManip/js/cssManip.js"></script>
