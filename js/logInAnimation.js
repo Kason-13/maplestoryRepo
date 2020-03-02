@@ -39,7 +39,7 @@ class Sunray{
             return true;
         }
         this.x--;
-        this.y-=2;
+        this.y--;
         return false;
     }
 }
