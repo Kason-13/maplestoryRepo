@@ -1,9 +1,12 @@
 <?php
     require_once("partial/header.php");
+    require_once("Action/IndexAction.php");
+    $indexAction = new IndexAction();
+    $data = $indexAction->execute();
 ?>
     <script src="js/cssManip/js/jQuery.js"></script>
     <script src="js/cssManip/js/cssManip.js"></script>
-    <script src="js/cssManip/js/index.js"></script>
+    <script src="js/index.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <script src="js/indexAudio.js"></script>
     <script src="js/logInAnimation.js"></script>
@@ -17,7 +20,7 @@
         </div>
         <div id="formContainer">
             <h1>A new world ahead</h1>
-            <form action="index.html" method="POST">
+            <form action="index.php" method="POST" autocomplete="off">
                 <input type="text" name="username" id="user" placeholder="Username">
                 <input type="password" name="password" id="pass"  placeholder="password">
                 <button type="submit">LogIn</button>
