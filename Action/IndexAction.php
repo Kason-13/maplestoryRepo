@@ -8,6 +8,24 @@
         }
 
         protected function executeAction() {
+            $data = [];
+            if(!empty($_POST)){
+                $data["username"] = $_POST["username"];
+                $data["password"] = $_POST["password"];
+            }
+
+            $result = parent::callAPI("signin", $data);
+
+            if ($result == "INVALID_USERNAME_PASSWORD") {
+                // err
+            }
+            else {
+                // Pour voir les informations retournées : var_dump($result);exit;
+                $key = $result->key;
+                $_SESSION["key"] = $key;
+                header("location:lobby.php");
+                exit;
+            }
 
             return [];
         }
