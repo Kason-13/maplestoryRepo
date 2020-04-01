@@ -26,7 +26,7 @@ const tick=()=>{
 	if(spriteList.length<=15){
 		mesoBagDelay++;
 		if(mesoBagDelay>=200){
-			spriteList.push(new mesoBag(1475,260));
+			spriteList.push(new mesoBag(1525,310));
 			mesoBagDelay = 0;
 		}
 	}
@@ -37,27 +37,23 @@ class mesoBag{
 	constructor(x,y){
 		this.x = x;
 		this.y = y;
-		this.speed = 1;
+		this.speed = 2;
 		this.hover = false;
 	}
 
 	tick(){
-		if(this.y==150){
+		if(this.y<=230){
 			this.hover = true;
 		}
 		if(this.hover){
-			if(this.y >= 260)
-			{
+			if(this.y >= 310)
 				this.y-=this.speed;
-			}else if(this.y<260){
+			else if(this.y<=310)
 				this.y+=this.speed;
-			}
 		}else{
-			if(this.y>=150){
-				this.y-=this.speed;
+			this.y-=this.speed;
 		}
-	}
-		ctx.drawImage(mesoBagIMG,this.x,this.y)
+		ctx.drawImage(mesoBagIMG,this.x,this.y,250,250);
 	}
 }
 
