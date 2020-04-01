@@ -23,6 +23,7 @@
                 // Pour voir les informations retournées : var_dump($result);exit;
                 $key = $result->key;
                 $_SESSION["key"] = $key;
+                $_SESSION["visibility"] = 1;
                 header("location:lobby.php");
                 exit;
             }
