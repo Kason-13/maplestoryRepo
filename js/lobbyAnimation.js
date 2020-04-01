@@ -46,10 +46,10 @@ class mesoBag{
 			this.hover = true;
 		}
 		if(this.hover){
-			if(this.y >= 310)
-				this.y-=this.speed;
-			else if(this.y<=310)
+			if(this.y<=310)
 				this.y+=this.speed;
+			else if(this.y>=320)
+				this.y-=this.speed;
 		}else{
 			this.y-=this.speed;
 		}
