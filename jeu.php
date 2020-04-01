@@ -4,6 +4,7 @@
     $jeuAction = new JeuAction();
     $data = $jeuAction->execute();
 ?>
+    <script src="js\cssManip\js\jQuery.js"></script>
     <title>Jeu</title>
 </head>
 <body>
