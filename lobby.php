@@ -16,7 +16,7 @@
 <body>
     <canvas id="lobbyAnimation" width="1920px"height="720px;"></canvas>
     <div id="choiceContainer">
-        <h1>Welcome</h1>
+        <h1>Menu</h1>
         <div id="buttonContainer" style="text-align:center;padding-top:1.5em;">
             <button id="LobbyButton" onclick="window.location.href='lobby.php?next=play'">Jouer</button>
             <button id="LobbyButton" onclick="window.location.href='lobby.php?next=practice'">Pratique</button>
