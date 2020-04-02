@@ -10,7 +10,7 @@
         protected function executeAction() {
            /*  $data = [];
             $data = */ 
-            parent::callAPI("state",$_SESSION["key"]);
+            parent::callAPI("games/state",$_SESSION["key"]);
             /* return compact("data"); */
             return [];
         }

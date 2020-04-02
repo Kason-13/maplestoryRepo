@@ -8,8 +8,7 @@ const state =()=>{
         type: "POST"
     })
     .done(function(msg){
-        console.log(msg);
-        let reponse = JSON.parse(msg);
+        let reponse = msg;
         console.log(reponse);
         setTimeout(state,1000);
     })
