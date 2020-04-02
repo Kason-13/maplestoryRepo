@@ -37,7 +37,6 @@
 			return json_decode($result);
 		}
 
-
 		public function execute() {
 			if (!empty($_GET["logout"])) {
 				session_unset();

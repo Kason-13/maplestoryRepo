@@ -26,11 +26,11 @@
 						header("location:index.php");
 						exit;
 				}
+				parent::callApi("games/auto-match",$data);
 				if($gotoJeu){
 					header("location:jeu.php");
 					exit;
 				}
-				parent::callApi("games/auto-match",$data);
 			}
 			return [];
 		}

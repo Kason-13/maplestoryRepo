@@ -11,8 +11,9 @@ window.addEventListener("load",()=>{
 	fadeInElement("iframe",3500);
 	canvas = document.querySelector("#lobbyAnimation");
 	ctx = canvas.getContext("2d");
-	spriteList.push(new walker(1920,680));
-	spriteList.push(new dropper(1650,455));
+	spriteList.push(new Walker(1920,680));
+	spriteList.push(new WalkerPet(2000,680));
+	spriteList.push(new Dropper(1650,455));
 	
 	menuDiv = document.getElementById("choiceContainer");
 	tick();
@@ -26,14 +27,14 @@ const tick=()=>{
 	if(spriteList.length<=15){
 		mesoBagDelay++;
 		if(mesoBagDelay>=200){
-			spriteList.push(new mesoBag(1525,310));
+			spriteList.push(new MesoBag(1525,310));
 			mesoBagDelay = 0;
 		}
 	}
 	window.requestAnimationFrame(tick);
 }
 
-class mesoBag{
+class MesoBag{
 	constructor(x,y){
 		this.x = x;
 		this.y = y;
@@ -57,7 +58,7 @@ class mesoBag{
 	}
 }
 
-class dropper{
+class Dropper{
 	constructor(x,y){
 		this.x=x;
 		this.y=y;
@@ -78,7 +79,7 @@ class dropper{
 	}
 }
 
-class walker{
+class Walker{
 	constructor(x,y){
 		this.x=x;
 		this.y=y;
@@ -100,6 +101,40 @@ class walker{
 		else{
 			this.tiledImage.changeRow(1);
 			menuDiv.style.display = "block";
+		}
+		this.tiledImage.tick(this.x,this.y,ctx);
+	}
+}
+
+class WalkerPet{
+	constructor(x,y){
+		this.x=x;
+		this.y=y;
+
+		this.columnCount = 8;
+		this.rowCount = 1;
+		this.refreshDelay = 80;
+		this.scale = 1.2;
+		this.columnLoop = true;
+		this.sitting = false;
+		this.tiledImage = new TiledImage("images/sprites/walkerPetWalking.png",this.columnCount,this.rowCount,this.refreshDelay,this.columnLoop,this.scale);
+		this.tiledImage.changeRow(0);
+		this.tiledImage.setFlipped(false);
+		this.tiledImage.changeMinMaxInterval(0,7);
+	}
+
+	tick(){
+		if(this.x >= 800)
+			this.x-=1.5;
+		else{
+			if(!this.sitting){
+				this.sitting = !this.sitting;
+				this.refreshDelay = 160;
+				this.tiledImage = new TiledImage("images/sprites/walkerPetSitting.png",this.columnCount,this.rowCount,this.refreshDelay,this.columnLoop,this.scale);
+				this.tiledImage.changeRow(0);
+				this.tiledImage.setFlipped(false);
+				this.tiledImage.changeMinMaxInterval(0,7);
+			}
 		}
 		this.tiledImage.tick(this.x,this.y,ctx);
 	}
