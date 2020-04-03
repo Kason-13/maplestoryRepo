@@ -14,13 +14,13 @@ body,html{
     background-repeat: no-repeat;
     background-position: center;
 }
-#OppenentHand,#PlayerHand{
+#OpponentHand,#PlayerHand{
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(4,1fr);
     background-color: rgba(35, 35, 35, 0.7);
 }
-#OppenentHand{
+#OpponentHand{
     grid-column: 1/5;
     grid-row: 1/2;
     height: 10vh;
@@ -30,13 +30,13 @@ body,html{
     grid-row: 8/11;
     height: 30vh;
 }
-#OppenentField,#PlayerField{
+#OpponentHandField,#PlayerField{
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(6,1fr);
     height: 20vh;
 }
-#OppenentField{
+#OpponentHandField{
     grid-column: 1/5;
     grid-row: 2/5;
 }

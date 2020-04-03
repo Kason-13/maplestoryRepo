@@ -9,12 +9,13 @@ const state =()=>{
     })
     .done(function(msg){
         let reponse = msg;
-        traitement(JSON.parse(reponse));
+        traitementHand(JSON.parse(reponse));
+        traitementOppenent(JSON.parse(reponse)["opponent"]);
         setTimeout(state,1000);
     })
 }
 
-const traitement=(data)=>{
+const traitementHand=(data)=>{
     document.getElementById("PlayerHand").innerHTML = "";
     let html = document.getElementById("CardTemplate").innerHTML;
     for(let cardIndex = 0;cardIndex<data["hand"].length;cardIndex++){
@@ -31,5 +32,14 @@ const traitement=(data)=>{
         div.querySelector(".cost").innerText = data["hand"][cardIndex].cost;
         document.getElementById("PlayerHand").appendChild(div);
     }
+};
+const traitementOppenent=(data)=>{
+    document.getElementById("OpponentHand").innerHTML="";
+    let div = document.createElement("div");
+    let cardH2 = document.createElement("h2");
+    cardH2.innerText = "Magix";
+    div.appendChild(cardH2);
+    for(let cardNum = 0;cardNum<data["handSize"].lenght;cardNum++)
+        document.getElementById("OpponentHand").appendChild(div);
 }
 

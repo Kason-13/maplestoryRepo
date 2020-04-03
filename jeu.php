@@ -20,8 +20,8 @@
         </div>
     </template>
     <div id="BoardContainer">
-        <div id="OppenentHand"></div>
-        <div id="OppenentField"></div>
+        <div id="OpponentHand"></div>
+        <div id="OpponentField"></div>
         <div id="PlayerField"></div>
         <div id="PlayerHand"></div>
     </div>
