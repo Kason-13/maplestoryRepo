@@ -10,7 +10,14 @@ const state =()=>{
     .done(function(msg){
         let reponse = msg;
         console.log(reponse);
+        /* traitement(reponse); */
         setTimeout(state,1000);
     })
+}
+
+const traitement=(data)=>{
+    for(let i = 0;i<data["hand"].length;i++){
+
+    }
 }
 
