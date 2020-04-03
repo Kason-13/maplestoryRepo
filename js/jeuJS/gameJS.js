@@ -17,10 +17,14 @@ const state =()=>{
 
 const traitementHand=(data)=>{
     document.getElementById("PlayerHand").innerHTML = "";
+    const numOfCards = data["hand"].length;
     let html = document.getElementById("CardTemplate").innerHTML;
+    document.getElementById("PlayerHand").style.gridTemplateColumns = "repeat("+numOfCards+",1fr)";
+
     for(let cardIndex = 0;cardIndex<data["hand"].length;cardIndex++){
         let div = document.createElement("div");
         div.innerHTML = html;
+        div.style.color = "white";
         document.getElementById("PlayerHand").appendChild(div);
         div.querySelector("h2").innerText = data["hand"][cardIndex].id;
         if(data["hand"][cardIndex].mechanics.length<0){
@@ -35,11 +39,15 @@ const traitementHand=(data)=>{
 };
 const traitementOppenent=(data)=>{
     document.getElementById("OpponentHand").innerHTML="";
-    let div = document.createElement("div");
-    let cardH2 = document.createElement("h2");
-    cardH2.innerText = "Magix";
-    div.appendChild(cardH2);
-    for(let cardNum = 0;cardNum<data["handSize"].lenght;cardNum++)
+    const numOfCards = data["handSize"];
+    document.getElementById("OpponentHand").style.gridTemplateColumns = "repeat("+numOfCards+",1fr)";
+
+    for(let cardNum = 0;cardNum<data["handSize"];cardNum++){
+        let div = document.createElement("div");
+        div.style.color = "white";
+        const textNode = document.createTextNode("MAGIX");
+        div.appendChild(textNode);
         document.getElementById("OpponentHand").appendChild(div);
+    }
 }
 
