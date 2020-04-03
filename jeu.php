@@ -10,15 +10,16 @@
     <title>Jeu</title>
 </head>
 <body>
-    <template id="Card-Template">
+    <template id="CardTemplate">
         <div class="Card">
             <h2></h2>
             <div class="ability"></div>
             <div class="hp"></div>
+            <div class="atk"></div>
+            <div class="cost"></div>
         </div>
     </template>
     <div id="BoardContainer">
-        <div id="GameInfo"></div>
         <div id="OppenentHand"></div>
         <div id="OppenentField"></div>
         <div id="PlayerField"></div>
