@@ -4,7 +4,7 @@ window.addEventListener('load',()=>{
 
 const state =()=>{
     $.ajax({
-        url: "ajax-state.php",
+        url: "ajaxController.php",
         type: "POST"
     })
     .done(function(msg){
