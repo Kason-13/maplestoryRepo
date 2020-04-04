@@ -17,6 +17,7 @@
             <div class="hp"></div>
             <div class="atk"></div>
             <div class="cost"></div>
+            <div class="uid" style="display:none;"></div>
         </div>
     </template>
     <div id="BoardContainer">
