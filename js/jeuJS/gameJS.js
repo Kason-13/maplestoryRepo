@@ -3,7 +3,10 @@ let selectedCardID=null;
 let selectedCard = false;
 
 window.addEventListener('load',()=>{
-    document.querySelector("#PlayerField").onclick=action();
+    document.querySelector("#PlayerField").onclick=()=>{
+        clickPlayerBoard()
+    };
+    // document.querySelector("#PlayerField").onclick=
     setTimeout(state,1000);
 })
 
@@ -84,7 +87,7 @@ const traitementOppenent=(data)=>{
 }
 const playSelectedCard=()=>{
     if(!selectedCardID)
-        return 0; 
+        return 0;
     return 1;
 }
 const clickPlayerBoard=()=>{
@@ -99,13 +102,13 @@ const action=(action)=>{
         case "PLAY":
             passedData={
                 which: action,
-                uid = selectedCardID
+                uid : selectedCardID
             }
             break;
         case "ATTACK":
             passedData={
                 which: action,
-                uid = selectedCardID
+                uid : selectedCardID
                 /* to add targeted card */
             }
             break;
