@@ -1,12 +1,17 @@
 let cardList=[];
+
 let selectedCardID=null;
 let selectedCard = false;
 
+let playerField = null;
+let opponentField = null;
+
 window.addEventListener('load',()=>{
-    document.querySelector("#PlayerField").onclick=()=>{
+    playerField = document.querySelector("#PlayerField");
+    playerField.onclick=()=>{
         clickPlayerBoard()
     };
-    // document.querySelector("#PlayerField").onclick=
+    opponentField= document.querySelector("#OpponentField");
     setTimeout(state,1000);
 })
 
@@ -19,8 +24,65 @@ const state =()=>{
         let reponse = msg;
         traitementHand(JSON.parse(reponse));
         traitementOppenent(JSON.parse(reponse)["opponent"]);
+        traitementField(JSON.parse(reponse)["board"],JSON.parse(reponse)["opponent"]["board"]);
         setTimeout(state,1000);
     })
+}
+
+/* 
+    METHODE POUR ACTUALISER LE FIELD
+    PARAM 1: LISTE BOARD DU JOUEUR PROVENNANT DE L'API
+    PARAM 2: LISTE BOARD DU OPPONENT PROVENNANT DE L'API
+*/
+// refactor into a function later -> repeated code
+const traitementField=(playerBoard,opponentBoard)=>{
+    playerField.innerHTML = "";
+    const numOnFieldPlayer = playerBoard.length;
+    let html = document.getElementById("CardTemplate").innerHTML;
+    playerField.style.gridTemplateColumns = "repeat("+numOnFieldPlayer+",1fr)";
+
+    for(let cardIndex = 0;cardIndex<numOnFieldPlayer;cardIndex++){
+        let div = document.createElement("div");
+        div.innerHTML = html;
+        div.style.color="white";
+        div.querySelector("h2").innerText = playerBoard[cardIndex].id;
+        div.querySelector(".uid").innerText = playerBoard[cardIndex].uid;
+
+        if(playerBoard[cardIndex].mechanics.length<0){
+            for(let mechanicsIndex = 0; mechanicsIndex<playerBoard[cardIndex].mechanics.length; mechanicsIndex++)
+                div.querySelector(".ability").innerText += playerBoard[cardIndex].mechanics[mechanicsIndex] + "\n";
+        }
+
+        div.querySelector(".hp").innerText = playerBoard[cardIndex].hp;
+        div.querySelector(".atk").innerText = playerBoard[cardIndex].atk;
+        div.querySelector(".cost").style.display = "none";
+        playerField.appendChild(div);
+    }
+
+    opponentField.innerHTML = "";
+    const numOnFieldOpponent = opponentBoard.length;
+    html = document.getElementById("CardTemplate").innerHTML;
+    opponentField.style.gridTemplateColumns = "repeat("+numOnFieldOpponent+",1fr)";
+
+    for(let cardIndex = 0;cardIndex<numOnFieldOpponent;cardIndex++){
+        let div = document.createElement("div");
+        div.innerHTML = html;
+        div.style.color="white";
+        div.querySelector("h2").innerText = opponentBoard[cardIndex].id;
+        div.querySelector(".uid").innerText = opponentBoard[cardIndex].uid;
+
+        if(opponentBoard[cardIndex].mechanics.length<0){
+            for(let mechanicsIndex = 0; mechanicsIndex<opponentBoard[cardIndex].mechanics.length; mechanicsIndex++)
+                div.querySelector(".ability").innerText += opponentBoard[cardIndex].mechanics[mechanicsIndex] + "\n";
+        }
+
+        div.querySelector(".hp").innerText = opponentBoard[cardIndex].hp;
+        div.querySelector(".atk").innerText = opponentBoard[cardIndex].atk;
+        div.querySelector(".cost").style.display = "none";
+        opponentField.appendChild(div);
+    }
+
+
 }
 
 /* 
@@ -33,7 +95,6 @@ const selectCardID=(id)=>{
     console.log("selected: ",selectedCardID);
 }
 
-
 /* 
     METHODE QUI MANIPULE LA DIV PLAYERHAND POUR AFFICHER LES CARTES QU'ON A EN MAIN
     PARAM: OBJECT PROVENANT DE L'API
@@ -44,11 +105,10 @@ const traitementHand=(data)=>{
     let html = document.getElementById("CardTemplate").innerHTML;
     document.getElementById("PlayerHand").style.gridTemplateColumns = "repeat("+numOfCards+",1fr)";
 
-    for(let cardIndex = 0;cardIndex<data["hand"].length;cardIndex++){
+    for(let cardIndex = 0;cardIndex<numOfCards;cardIndex++){
         let div = document.createElement("div");
         div.innerHTML = html;
         div.style.color = "white";
-        document.getElementById("PlayerHand").appendChild(div);
         div.querySelector("h2").innerText = data["hand"][cardIndex].id;
         div.querySelector(".uid").innerText = data["hand"][cardIndex].uid;
 
@@ -85,11 +145,13 @@ const traitementOppenent=(data)=>{
         document.getElementById("OpponentHand").appendChild(div);
     }
 }
+
 const playSelectedCard=()=>{
-    if(!selectedCardID)
+    if(!selectedCard)
         return 0;
     return 1;
 }
+
 const clickPlayerBoard=()=>{
     validAction = playSelectedCard();
     if(validAction)

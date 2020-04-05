@@ -8,11 +8,11 @@
         }
 
         protected function executeAction() {
-            if($_POST["data"]["which"] == "PLAY")
-                $data["uid"] = $_POST["data"]["uid"];
+            if($_POST["which"] == "PLAY")
+                $data["uid"] = $_POST["uid"];
 
             $data["key"] = $_SESSION["key"];
-            $data["type"] = $_POST["data"]["which"];
+            $data["type"] = $_POST["which"];
             $returned = parent::callAPI("games/action",$data);
             return compact("returned");
         }
