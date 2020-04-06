@@ -28,6 +28,16 @@ const state =()=>{
         setTimeout(state,1000);
     })
 }
+/* 
+    METHODE POUR RETOURNER LE NOM DE LA CARTE ET L'IMAGE
+    PARAM: ID DE LA CARTE
+*/
+const getNameAndImage=(cardId)=>{
+    return returnedObj={
+        name: cardData[cardId].name,
+        imgSrc: cardData[cardId].img
+    }
+}
 
 /* 
     METHODE POUR ACTUALISER LE FIELD
@@ -42,12 +52,17 @@ const traitementField=(playerBoard,opponentBoard)=>{
     playerField.style.gridTemplateColumns = "repeat("+numOnFieldPlayer+",1fr)";
 
     for(let cardIndex = 0;cardIndex<numOnFieldPlayer;cardIndex++){
+
+        cardNameAndImage = getNameAndImage(playerBoard[cardIndex].id);
+
         let div = document.createElement("div");
         div.innerHTML = html;
         div.style.color="white";
-        div.querySelector("h2").innerText = playerBoard[cardIndex].id;
+        div.querySelector("h2").innerText = cardNameAndImage.name;
         div.querySelector(".uid").innerText = playerBoard[cardIndex].uid;
-
+        div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
+        div.querySelector("#CardImage").style.backgroundSize = "contain";
+        div.querySelector("#CardImage").style.backgroundRepeat = "no-repeat";
         if(playerBoard[cardIndex].mechanics.length<0){
             for(let mechanicsIndex = 0; mechanicsIndex<playerBoard[cardIndex].mechanics.length; mechanicsIndex++)
                 div.querySelector(".ability").innerText += playerBoard[cardIndex].mechanics[mechanicsIndex] + "\n";
@@ -65,11 +80,17 @@ const traitementField=(playerBoard,opponentBoard)=>{
     opponentField.style.gridTemplateColumns = "repeat("+numOnFieldOpponent+",1fr)";
 
     for(let cardIndex = 0;cardIndex<numOnFieldOpponent;cardIndex++){
+
+        cardNameAndImage = getNameAndImage(opponentBoard[cardIndex].id);
+
         let div = document.createElement("div");
         div.innerHTML = html;
         div.style.color="white";
-        div.querySelector("h2").innerText = opponentBoard[cardIndex].id;
+        div.querySelector("h2").innerText = cardNameAndImage.name;
         div.querySelector(".uid").innerText = opponentBoard[cardIndex].uid;
+        div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
+        div.querySelector("#CardImage").style.backgroundSize = "contain";
+        div.querySelector("#CardImage").style.backgroundRepeat = "no-repeat";
 
         if(opponentBoard[cardIndex].mechanics.length<0){
             for(let mechanicsIndex = 0; mechanicsIndex<opponentBoard[cardIndex].mechanics.length; mechanicsIndex++)
@@ -106,12 +127,17 @@ const traitementHand=(data)=>{
     document.getElementById("PlayerHand").style.gridTemplateColumns = "repeat("+numOfCards+",1fr)";
 
     for(let cardIndex = 0;cardIndex<numOfCards;cardIndex++){
+
+        cardNameAndImage = getNameAndImage(data["hand"][cardIndex].id);
+
         let div = document.createElement("div");
         div.innerHTML = html;
         div.style.color = "white";
-        div.querySelector("h2").innerText = data["hand"][cardIndex].id;
+        div.querySelector("h2").innerText = cardNameAndImage.name;
         div.querySelector(".uid").innerText = data["hand"][cardIndex].uid;
-
+        div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
+        div.querySelector("#CardImage").style.backgroundSize = "contain";
+        div.querySelector("#CardImage").style.backgroundRepeat = "no-repeat";
         div.onclick=()=>{
             selectCardID(div.querySelector(".uid").innerText);
         }

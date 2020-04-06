@@ -1,7 +1,7 @@
 cardData={
     1:{
-        name:"cardName",
-        img:"",
+        name:"Green Snail",
+        img:"images/MonsterImgDB/1.jpg",
     },
     2:{
         name:"Shield Golem",
@@ -112,24 +112,24 @@ cardData={
         img:"images/MonsterImgDB/28.jpg",
     },
     29:{
-        name:"cardName",
-        img:"",
+        name:"Resistance: Demon Slayer",
+        img:"images/MonsterImgDB/29.png",
     },
     30:{
-        name:"cardName",
-        img:"",
+        name:"Horntail",
+        img:"images/MonsterImgDB/30.jpg",
     },
     31:{
-        name:"cardName",
-        img:"",
+        name:"Cygnus United",
+        img:"images/MonsterImgDB/30.jpg",
     },
     32:{
-        name:"cardName",
-        img:"",
+        name:"Black Mage: Unleashed",
+        img:"images/MonsterImgDB/32.png",
     },
     33:{
-        name:"cardName",
-        img:"",
+        name:"Black Mage: Wipe",
+        img:"images/MonsterImgDB/33.png",
     },
     34:{
         name:"Grendel: The wise",
@@ -184,8 +184,8 @@ cardData={
         img:"images/MonsterImgDB/46.png",
     },
     47:{
-        name:"cardName",
-        img:"",
+        name:"Kanna",
+        img:"images/MonsterImgDB/47.jpg",
     },
     48:{
         name:"Cygnus: The Empress of Maple World",
@@ -212,8 +212,8 @@ cardData={
         img:"images/MonsterImgDB/53.jpg",
     },
     54:{
-        name:"cardName",
-        img:"",
+        name:"Lotus: Wipe",
+        img:"images/MonsterImgDB/54.png",
     },
     55:{
         name:"Guard Captain: Darknell",
@@ -228,7 +228,7 @@ cardData={
         img:"images/MonsterImgDB/57.png",
     },
     58:{
-        name:"Dark Mage",
+        name:"Black Mage: phase 1",
         img:"images/MonsterImgDB/58.png",
     },
     59:{

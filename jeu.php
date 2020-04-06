@@ -5,6 +5,7 @@
     $data = $jeuAction->execute();
 ?>
     <script src="js\cssManip\js\jQuery.js"></script>
+    <script src="js/jeuJS/gameList.js"></script>
     <script src="js/jeuJS/gameJS.js"></script>
     <link rel="stylesheet" href="css/jeu.css">
     <title>Jeu</title>
@@ -13,6 +14,9 @@
     <template id="CardTemplate">
         <div class="Card">
             <h2></h2>
+            <div style="width:150px; height:100px;">
+                <img src="" id="CardImage" style='height: 100%; width: 100%;'>
+            </div>
             <div class="ability"></div>
             <div class="hp"></div>
             <div class="atk"></div>
