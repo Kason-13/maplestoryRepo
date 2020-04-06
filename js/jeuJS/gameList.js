@@ -92,24 +92,24 @@ cardData={
         img:"images/MonsterImgDB/23.jpg",
     },
     24:{
-        name:"cardName",
-        img:"",
+        name:"Evan",
+        img:"images/MonsterImgDB/24.jpg",
     },
     25:{
-        name:"cardName",
-        img:"",
+        name:"Shade",
+        img:"images/MonsterImgDB/25.jpg",
     },
     26:{
-        name:"cardName",
-        img:"",
+        name:"Luminous",
+        img:"images/MonsterImgDB/26.jpg",
     },
     27:{
-        name:"cardName",
-        img:"",
+        name:"Pink Bean",
+        img:"images/MonsterImgDB/27.jpg",
     },
     28:{
-        name:"cardName",
-        img:"",
+        name:"Surprise Style Box",
+        img:"images/MonsterImgDB/28.jpg",
     },
     29:{
         name:"cardName",
@@ -136,8 +136,8 @@ cardData={
         img:"images/MonsterImgDB/34.jpg",
     },
     35:{
-        name:"cardName",
-        img:"",
+        name:"Zakum",
+        img:"images/MonsterImgDB/35.jpg",
     },
     36:{
         name:"Mir",
@@ -152,8 +152,8 @@ cardData={
         img:"images/MonsterImgDB/38.jpg",
     },
     39:{
-        name:"cardName",
-        img:"",
+        name:"Mercedes",
+        img:"images/MonsterImgDB/39.jpg",
     },
     40:{
         name:"Eckhart: The NightWalker",
@@ -164,12 +164,12 @@ cardData={
         img:"images/MonsterImgDB/41.jpg",
     },
     42:{
-        name:"cardName",
-        img:"",
+        name:"Resistance: Blaster",
+        img:"images/MonsterImgDB/42.jpg",
     },
     43:{
-        name:"cardName",
-        img:"",
+        name:"Heroes United",
+        img:"images/MonsterImgDB/43.jpg",
     },
     44:{
         name:"Mr.Penguin",
@@ -208,8 +208,8 @@ cardData={
         img:"images/MonsterImgDB/52.jpg",
     },
     53:{
-        name:"cardName",
-        img:"",
+        name:"Corrupted Cygnus Empress",
+        img:"images/MonsterImgDB/53.jpg",
     },
     54:{
         name:"cardName",
@@ -224,12 +224,12 @@ cardData={
         img:"images/MonsterImgDB/56.jpg",
     },
     57:{
-        name:"cardName",
-        img:"",
+        name:"Phantom",
+        img:"images/MonsterImgDB/57.png",
     },
     58:{
-        name:"cardName",
-        img:"",
+        name:"Dark Mage",
+        img:"images/MonsterImgDB/58.png",
     },
     59:{
         name:"Mano",
