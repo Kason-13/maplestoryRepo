@@ -197,7 +197,7 @@ cardData={
     },
     50:{
         name:"Dragon Roar",
-        img:"images/MonsterImgDB/45.png",
+        img:"images/MonsterImgDB/50.png",
     },
     51:{
         name:"King Clang",

@@ -28,6 +28,7 @@ const state =()=>{
         setTimeout(state,1000);
     })
 }
+
 /* 
     METHODE POUR RETOURNER LE NOM DE LA CARTE ET L'IMAGE
     PARAM: ID DE LA CARTE
@@ -57,7 +58,7 @@ const traitementField=(playerBoard,opponentBoard)=>{
 
         let div = document.createElement("div");
         div.innerHTML = html;
-        div.style.color="white";
+        div.style.color="red";
         div.querySelector("h2").innerText = cardNameAndImage.name;
         div.querySelector(".uid").innerText = playerBoard[cardIndex].uid;
         div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
@@ -68,8 +69,8 @@ const traitementField=(playerBoard,opponentBoard)=>{
                 div.querySelector(".ability").innerText += playerBoard[cardIndex].mechanics[mechanicsIndex] + "\n";
         }
 
-        div.querySelector(".hp").innerText = playerBoard[cardIndex].hp;
-        div.querySelector(".atk").innerText = playerBoard[cardIndex].atk;
+        div.querySelector(".hp").innerText = "HP: " + playerBoard[cardIndex].hp;
+        div.querySelector(".atk").innerText = "ATK: "+playerBoard[cardIndex].atk;
         div.querySelector(".cost").style.display = "none";
         playerField.appendChild(div);
     }
@@ -85,7 +86,7 @@ const traitementField=(playerBoard,opponentBoard)=>{
 
         let div = document.createElement("div");
         div.innerHTML = html;
-        div.style.color="white";
+        div.style.color="red";
         div.querySelector("h2").innerText = cardNameAndImage.name;
         div.querySelector(".uid").innerText = opponentBoard[cardIndex].uid;
         div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
@@ -97,8 +98,8 @@ const traitementField=(playerBoard,opponentBoard)=>{
                 div.querySelector(".ability").innerText += opponentBoard[cardIndex].mechanics[mechanicsIndex] + "\n";
         }
 
-        div.querySelector(".hp").innerText = opponentBoard[cardIndex].hp;
-        div.querySelector(".atk").innerText = opponentBoard[cardIndex].atk;
+        div.querySelector(".hp").innerText = "HP: "+ opponentBoard[cardIndex].hp;
+        div.querySelector(".atk").innerText = "ATK: "+opponentBoard[cardIndex].atk;
         div.querySelector(".cost").style.display = "none";
         opponentField.appendChild(div);
     }
@@ -113,7 +114,6 @@ const traitementField=(playerBoard,opponentBoard)=>{
 const selectCardID=(id)=>{
     selectedCard = true;
     selectedCardID = id;
-    console.log("selected: ",selectedCardID);
 }
 
 /* 
@@ -132,7 +132,7 @@ const traitementHand=(data)=>{
 
         let div = document.createElement("div");
         div.innerHTML = html;
-        div.style.color = "white";
+        div.style.color = "red";
         div.querySelector("h2").innerText = cardNameAndImage.name;
         div.querySelector(".uid").innerText = data["hand"][cardIndex].uid;
         div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
@@ -147,9 +147,9 @@ const traitementHand=(data)=>{
                 div.querySelector(".ability").innerText += data["hand"][cardIndex].mechanics[mechanicsIndex] + "\n";
         }
 
-        div.querySelector(".hp").innerText = data["hand"][cardIndex].hp;
-        div.querySelector(".atk").innerText = data["hand"][cardIndex].atk;
-        div.querySelector(".cost").innerText = data["hand"][cardIndex].cost;
+        div.querySelector(".hp").innerText ="HP: " +data["hand"][cardIndex].hp;
+        div.querySelector(".atk").innerText = "ATK: "+data["hand"][cardIndex].atk;
+        div.querySelector(".cost").innerText = "COST: "+data["hand"][cardIndex].cost;
         document.getElementById("PlayerHand").appendChild(div);
     }
 }
