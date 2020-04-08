@@ -25,7 +25,7 @@ cardData={
     },
     7:{
         name:"Zombie Mushroom",
-        img:"images/MonsterImgDB/7.png",
+        img:"images/MonsterImgDB/7.jpg",
     },
     8:{
         name:"Green Slime",
@@ -89,7 +89,7 @@ cardData={
     },
     23:{
         name:"Kyrin",
-        img:"images/MonsterImgDB/23.jpg",
+        img:"images/MonsterImgDB/23.png",
     },
     24:{
         name:"Evan",

@@ -48,63 +48,10 @@ const getNameAndImage=(cardId)=>{
 // refactor into a function later -> repeated code
 const traitementField=(playerBoard,opponentBoard)=>{
     playerField.innerHTML = "";
-    const numOnFieldPlayer = playerBoard.length;
-    let html = document.getElementById("CardTemplate").innerHTML;
-    playerField.style.gridTemplateColumns = "repeat("+numOnFieldPlayer+",1fr)";
-
-    for(let cardIndex = 0;cardIndex<numOnFieldPlayer;cardIndex++){
-
-        cardNameAndImage = getNameAndImage(playerBoard[cardIndex].id);
-
-        let div = document.createElement("div");
-        div.innerHTML = html;
-        div.style.color="red";
-        div.querySelector("h2").innerText = cardNameAndImage.name;
-        div.querySelector(".uid").innerText = playerBoard[cardIndex].uid;
-        div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
-        div.querySelector("#CardImage").style.backgroundSize = "contain";
-        div.querySelector("#CardImage").style.backgroundRepeat = "no-repeat";
-        if(playerBoard[cardIndex].mechanics.length<0){
-            for(let mechanicsIndex = 0; mechanicsIndex<playerBoard[cardIndex].mechanics.length; mechanicsIndex++)
-                div.querySelector(".ability").innerText += playerBoard[cardIndex].mechanics[mechanicsIndex] + "\n";
-        }
-
-        div.querySelector(".hp").innerText = "HP: " + playerBoard[cardIndex].hp;
-        div.querySelector(".atk").innerText = "ATK: "+playerBoard[cardIndex].atk;
-        div.querySelector(".cost").style.display = "none";
-        playerField.appendChild(div);
-    }
+    arrangeBoard(playerField,playerBoard);
 
     opponentField.innerHTML = "";
-    const numOnFieldOpponent = opponentBoard.length;
-    html = document.getElementById("CardTemplate").innerHTML;
-    opponentField.style.gridTemplateColumns = "repeat("+numOnFieldOpponent+",1fr)";
-
-    for(let cardIndex = 0;cardIndex<numOnFieldOpponent;cardIndex++){
-
-        cardNameAndImage = getNameAndImage(opponentBoard[cardIndex].id);
-
-        let div = document.createElement("div");
-        div.innerHTML = html;
-        div.style.color="red";
-        div.querySelector("h2").innerText = cardNameAndImage.name;
-        div.querySelector(".uid").innerText = opponentBoard[cardIndex].uid;
-        div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
-        div.querySelector("#CardImage").style.backgroundSize = "contain";
-        div.querySelector("#CardImage").style.backgroundRepeat = "no-repeat";
-
-        if(opponentBoard[cardIndex].mechanics.length<0){
-            for(let mechanicsIndex = 0; mechanicsIndex<opponentBoard[cardIndex].mechanics.length; mechanicsIndex++)
-                div.querySelector(".ability").innerText += opponentBoard[cardIndex].mechanics[mechanicsIndex] + "\n";
-        }
-
-        div.querySelector(".hp").innerText = "HP: "+ opponentBoard[cardIndex].hp;
-        div.querySelector(".atk").innerText = "ATK: "+opponentBoard[cardIndex].atk;
-        div.querySelector(".cost").style.display = "none";
-        opponentField.appendChild(div);
-    }
-
-
+    arrangeBoard(opponentField,opponentBoard);
 }
 
 /* 
@@ -121,8 +68,10 @@ const selectCardID=(id)=>{
     PARAM: OBJECT PROVENANT DE L'API
 */
 const traitementHand=(data)=>{
-    document.getElementById("PlayerHand").innerHTML = "";
-    const numOfCards = data["hand"].length;
+    let playerHand = document.getElementById("PlayerHand")
+    playerHand.innerHTML = "";
+    arrangeHand(playerHand,data["hand"]);
+    /* const numOfCards = data["hand"].length;
     let html = document.getElementById("CardTemplate").innerHTML;
     document.getElementById("PlayerHand").style.gridTemplateColumns = "repeat("+numOfCards+",1fr)";
 
@@ -151,7 +100,7 @@ const traitementHand=(data)=>{
         div.querySelector(".atk").innerText = "ATK: "+data["hand"][cardIndex].atk;
         div.querySelector(".cost").innerText = "COST: "+data["hand"][cardIndex].cost;
         document.getElementById("PlayerHand").appendChild(div);
-    }
+    } */
 }
 
 /* 

@@ -5,6 +5,7 @@
     $data = $jeuAction->execute();
 ?>
     <script src="js\cssManip\js\jQuery.js"></script>
+    <script src="js/jeuJS/layoutJS.js"></script>
     <script src="js/jeuJS/gameList.js"></script>
     <script src="js/jeuJS/gameJS.js"></script>
     <link rel="stylesheet" href="css/jeu.css">
