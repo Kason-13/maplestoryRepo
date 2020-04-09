@@ -2,6 +2,8 @@ let cardList=[];
 
 let selectedCardID=null;
 let selectedCard = false;
+let selectedTargetID = null;
+let selectedFromField = false;
 
 let playerField = null;
 let opponentField = null;
@@ -62,6 +64,13 @@ const selectCardID=(id)=>{
     selectedCard = true;
     selectedCardID = id;
 }
+/* 
+    pour choissir le target durant une attaque
+*/
+const selectTargetID=(id)=>{
+    selectedTarget = true;
+    selectedTargetID = id;
+}
 
 /* 
     METHODE QUI MANIPULE LA DIV PLAYERHAND POUR AFFICHER LES CARTES QU'ON A EN MAIN
@@ -71,36 +80,6 @@ const traitementHand=(data)=>{
     let playerHand = document.getElementById("PlayerHand")
     playerHand.innerHTML = "";
     arrangeHand(playerHand,data["hand"]);
-    /* const numOfCards = data["hand"].length;
-    let html = document.getElementById("CardTemplate").innerHTML;
-    document.getElementById("PlayerHand").style.gridTemplateColumns = "repeat("+numOfCards+",1fr)";
-
-    for(let cardIndex = 0;cardIndex<numOfCards;cardIndex++){
-
-        cardNameAndImage = getNameAndImage(data["hand"][cardIndex].id);
-
-        let div = document.createElement("div");
-        div.innerHTML = html;
-        div.style.color = "red";
-        div.querySelector("h2").innerText = cardNameAndImage.name;
-        div.querySelector(".uid").innerText = data["hand"][cardIndex].uid;
-        div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
-        div.querySelector("#CardImage").style.backgroundSize = "contain";
-        div.querySelector("#CardImage").style.backgroundRepeat = "no-repeat";
-        div.onclick=()=>{
-            selectCardID(div.querySelector(".uid").innerText);
-        }
-
-        if(data["hand"][cardIndex].mechanics.length<0){
-            for(let mechanicsIndex = 0; mechanicsIndex<data["hand"][cardIndex].mechanics.length; mechanicsIndex++)
-                div.querySelector(".ability").innerText += data["hand"][cardIndex].mechanics[mechanicsIndex] + "\n";
-        }
-
-        div.querySelector(".hp").innerText ="HP: " +data["hand"][cardIndex].hp;
-        div.querySelector(".atk").innerText = "ATK: "+data["hand"][cardIndex].atk;
-        div.querySelector(".cost").innerText = "COST: "+data["hand"][cardIndex].cost;
-        document.getElementById("PlayerHand").appendChild(div);
-    } */
 }
 
 /* 
@@ -121,16 +100,60 @@ const traitementOppenent=(data)=>{
     }
 }
 
+/* 
+    methode pour verifier si une carte est selected
+    RETURN:VRAIS/FAUX
+*/
 const playSelectedCard=()=>{
     if(!selectedCard)
         return 0;
     return 1;
 }
-
+/* 
+    methode pour verifier si on summon une carte
+    APPELLE LA METHODE ACTION AVEC "PLAY" EN PARAM
+*/
 const clickPlayerBoard=()=>{
-    validAction = playSelectedCard();
-    if(validAction)
+    summonCard = playSelectedCard();
+    if(summonCard)
         action("PLAY");
+}
+
+/* 
+    METHODE POUR VERIFIER SI LA CARTE EST DANS LE FIELD ADVERSE
+    PARAM1: LISTE DE CARTE DE L'ADVERSE
+    PARAM2: ID DU TARGET
+    RETURN: VRAIS/FAUX
+*/
+const findTarget=(opponentFieldList,target)=>{
+    cardID={}
+    for(let index = 0;index<opponentFieldList.length;index++)
+        cardID[opponentField[index].uid] = opponentField[index][uid]
+    if(target in cardID)
+        return 1;
+    return 0;
+}
+
+/* 
+    verifie si la cible est valide
+    PARAM: TARGET ID
+    RETURN: VRAIS/FAUX
+*/
+const validTarget=(target)=>{
+    if(selectedFromField && selectedCard)
+        if(findTarget(opponentBoard,target))
+            return 1;
+    return 0;
+}
+/* 
+    METHODE POUR QUAND ON CLICK SUR LE BOARD DU OPPONENT
+    PARAM: TARGET ID
+    SI VALIDE: APPELLE LA FONCTION ACTION AVEC "ATTACK" EN PARAM
+*/
+const clickOpponentBoard=(target)=>{
+    validAction = validTarget(target);
+    if(validAction)
+        action("ATTACK");
 }
 
 const action=(action)=>{

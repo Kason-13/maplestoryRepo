@@ -16,7 +16,7 @@
         <div class="Card">
             <h2></h2>
             <div style="width:150px; height:100px;">
-                <img src="" id="CardImage" style='height: 100%; width: 100%;'>
+                <img src="" id="CardImage">
             </div>
             <div class="ability"></div>
             <div class="hp"></div>
