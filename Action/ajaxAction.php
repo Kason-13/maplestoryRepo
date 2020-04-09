@@ -8,8 +8,15 @@
         }
 
         protected function executeAction() {
-            if($_POST["which"] == "PLAY")
-                $data["uid"] = $_POST["uid"];
+            switch ($_POST["which"]) {
+                case "PLAY":
+                    $data["uid"] = $_POST["uid"];
+                    break;
+                case "ATTACK":
+                    $data["uid"] = $_POST["uid"];
+                    $data["targetUid"] = $_POST["targetUid"];
+                break;
+            }
 
             $data["key"] = $_SESSION["key"];
             $data["type"] = $_POST["which"];

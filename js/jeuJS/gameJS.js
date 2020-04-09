@@ -11,9 +11,12 @@ let opponentField = null;
 window.addEventListener('load',()=>{
     playerField = document.querySelector("#PlayerField");
     playerField.onclick=()=>{
-        clickPlayerBoard()
+        clickPlayerBoard();
     };
     opponentField= document.querySelector("#OpponentField");
+    opponentField.onclick=()=>{
+        clickOpponentBoard();
+    }
     setTimeout(state,1000);
 })
 
@@ -107,6 +110,7 @@ const traitementOppenent=(data)=>{
 const playSelectedCard=()=>{
     if(!selectedCard)
         return 0;
+    selectedCard = false;
     return 1;
 }
 /* 
@@ -168,8 +172,8 @@ const action=(action)=>{
         case "ATTACK":
             passedData={
                 which: action,
-                uid : selectedCardID
-                /* to add targeted card */
+                uid : selectedCardID,
+                targetUid : selectedTargetID
             }
             break;
         case "END_TURN":

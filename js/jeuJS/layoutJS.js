@@ -1,3 +1,5 @@
+let glowIndex = null;
+
 const arrangeBoard=(whichBoard,data)=>{
     const BoardLimit = 7;
     const width = window.innerWidth / BoardLimit;
@@ -29,13 +31,16 @@ const arrangeHand=(whichHand,data)=>{
 /* 
     ajout de event listener pour les cartes en main et sur le field du joueur
 */
-const addClickListener=(div,toAddFunction)=>{
-    if(div.id == "PlayerField")
-        selectedFromField = true;
-    div.onclick=function(this){
+const addClickListener=(div,toAddFunction,index,uid)=>{
+    div.onclick=function(){
         clearGlow();
-        addGlow(this);
-        toAddFunction();
+        if(div.id == "PlayerField")
+            selectedFromField = true;
+        else{
+            selectedFromField = false;
+            addGlow(index);
+        }
+        toAddFunction(uid);
     }
 }
 /* 
@@ -43,13 +48,16 @@ const addClickListener=(div,toAddFunction)=>{
     la main ou du field
 */
 const clearGlow=()=>{
-    document.querySelectorAll("div").style.border="none";
+    glowIndex = null
+    document.querySelectorAll("div").forEach(element => {
+        element.style.border = "none";
+    });
 }
 /* 
     methode pour ajouter un glowing effect quand on click sur la carte selected en main ou du field du joueur
 */
-const addGlow=(div)=>{
-    div.style.border = "4px solid skyblue"
+const addGlow=(index)=>{
+    glowIndex = index;
 }
 
 const appendCard=(data,index,leBoard,width)=>{
@@ -58,12 +66,14 @@ const appendCard=(data,index,leBoard,width)=>{
     let div = document.createElement("div");
     div.innerHTML = html;
     div.style.width = width+"px";
-    if(leBoard.id == "PlayerHand" || leBoard.id == "PlayerField")
-        addClickListener(div,selectCardID(div.querySelector(".uid").innerText))
     div.style.color="red";
     div.querySelector("h2").innerText = cardNameAndImage.name;
     div.querySelector(".uid").innerText = data[index].uid;
+    if(leBoard.id == "PlayerHand" || leBoard.id == "PlayerField")
+        addClickListener(div,selectCardID,index,div.querySelector(".uid").innerText)
     div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
+    if(glowIndex == index && leBoard.id == "PlayerHand")
+        div.style.border = "4px solid skyblue";
     if(data[index].mechanics.length>0){
         for(let mechanicsIndex = 0;mechanicsIndex<data[index].mechanics.length;mechanicsIndex++)
             div.querySelector(".ability").innerText += data[index].mechanics[mechanicsIndex];

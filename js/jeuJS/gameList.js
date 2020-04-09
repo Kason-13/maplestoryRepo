@@ -157,7 +157,7 @@ cardData={
     },
     40:{
         name:"Eckhart: The NightWalker",
-        img:"images/MonsterImgDB/20.jpg",
+        img:"images/MonsterImgDB/40.jpg",
     },
     41:{
         name:"Kinesis",
