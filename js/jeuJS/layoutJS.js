@@ -1,4 +1,5 @@
 let glowIndex = null;
+let playFromHand = false;
 
 const arrangeBoard=(whichBoard,data)=>{
     const BoardLimit = 7;
@@ -31,13 +32,14 @@ const arrangeHand=(whichHand,data)=>{
 /* 
     ajout de event listener pour les cartes en main et sur le field du joueur
 */
-const addClickListener=(div,toAddFunction,index,uid)=>{
+const addClickListener=(div,toAddFunction,index,uid,divID)=>{
     div.onclick=function(){
         clearGlow();
-        if(div.id == "PlayerField")
-            selectedFromField = true;
+        if(divID == "PlayerField"){
+            playFromHand = false;
+        }
         else{
-            selectedFromField = false;
+            playFromHand = true;
             addGlow(index);
         }
         toAddFunction(uid);
@@ -70,7 +72,9 @@ const appendCard=(data,index,leBoard,width)=>{
     div.querySelector("h2").innerText = cardNameAndImage.name;
     div.querySelector(".uid").innerText = data[index].uid;
     if(leBoard.id == "PlayerHand" || leBoard.id == "PlayerField")
-        addClickListener(div,selectCardID,index,div.querySelector(".uid").innerText)
+        addClickListener(div,selectCardID,index,div.querySelector(".uid").innerText,leBoard.id)
+    else
+        addClickListener(div,selectTargetID,index,div.querySelector(".uid").innerText)
     div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
     if(glowIndex == index && leBoard.id == "PlayerHand")
         div.style.border = "4px solid skyblue";

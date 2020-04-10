@@ -1,9 +1,9 @@
 let cardList=[];
+let opponentBoardList = null;
 
 let selectedCardID=null;
 let selectedCard = false;
 let selectedTargetID = null;
-let selectedFromField = false;
 
 let playerField = null;
 let opponentField = null;
@@ -15,7 +15,7 @@ window.addEventListener('load',()=>{
     };
     opponentField= document.querySelector("#OpponentField");
     opponentField.onclick=()=>{
-        clickOpponentBoard();
+        clickOpponentBoard(opponentBoardList);
     }
     setTimeout(state,1000);
 })
@@ -29,7 +29,8 @@ const state =()=>{
         let reponse = msg;
         traitementHand(JSON.parse(reponse));
         traitementOppenent(JSON.parse(reponse)["opponent"]);
-        traitementField(JSON.parse(reponse)["board"],JSON.parse(reponse)["opponent"]["board"]);
+        opponentBoardList = JSON.parse(reponse)["opponent"]["board"]
+        traitementField(JSON.parse(reponse)["board"],opponentBoardList);
         setTimeout(state,1000);
     })
 }
@@ -108,9 +109,9 @@ const traitementOppenent=(data)=>{
     RETURN:VRAIS/FAUX
 */
 const playSelectedCard=()=>{
-    if(!selectedCard)
+    if(!playFromHand)
         return 0;
-    selectedCard = false;
+    glowIndex = null;
     return 1;
 }
 /* 
@@ -132,7 +133,7 @@ const clickPlayerBoard=()=>{
 const findTarget=(opponentFieldList,target)=>{
     cardID={}
     for(let index = 0;index<opponentFieldList.length;index++)
-        cardID[opponentField[index].uid] = opponentField[index][uid]
+        cardID[opponentFieldList[index].uid] = opponentFieldList[index][uid] // problem is still here
     if(target in cardID)
         return 1;
     return 0;
@@ -143,9 +144,9 @@ const findTarget=(opponentFieldList,target)=>{
     PARAM: TARGET ID
     RETURN: VRAIS/FAUX
 */
-const validTarget=(target)=>{
-    if(selectedFromField && selectedCard)
-        if(findTarget(opponentBoard,target))
+const validTarget=(opponentBoard)=>{
+    if(playFromHand && selectedCard)
+        if(findTarget(opponentBoard,selectedTargetID))
             return 1;
     return 0;
 }
@@ -154,10 +155,12 @@ const validTarget=(target)=>{
     PARAM: TARGET ID
     SI VALIDE: APPELLE LA FONCTION ACTION AVEC "ATTACK" EN PARAM
 */
-const clickOpponentBoard=(target)=>{
-    validAction = validTarget(target);
+const clickOpponentBoard=(opponentList)=>{
+    validAction = validTarget(opponentList);
     if(validAction)
         action("ATTACK");
+    selectedTargetID = null;
+    selectedCardID = null;
 }
 
 const action=(action)=>{
