@@ -9,15 +9,17 @@
 
         protected function executeAction() {
             switch ($_POST["which"]) {
+                case "END_TURN":
+                    break;
                 case "PLAY":
                     $data["uid"] = $_POST["uid"];
                     break;
                 case "ATTACK":
                     $data["uid"] = $_POST["uid"];
-                    $data["targetUid"] = $_POST["targetUid"];
-                break;
+                    $data["targetuid"] = $_POST["targetUid"];
+                    break;
             }
-
+            var_dump($data);
             $data["key"] = $_SESSION["key"];
             $data["type"] = $_POST["which"];
             $returned = parent::callAPI("games/action",$data);

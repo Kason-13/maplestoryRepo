@@ -235,4 +235,17 @@ cardData={
         name:"Mano",
         img:"images/MonsterImgDB/59.jpg",
     },
+    /* to change these images later */
+    60:{
+        name:"Mano2",
+        img:"images/MonsterImgDB/59.jpg",
+    },
+    61:{
+        name:"Mano3",
+        img:"images/MonsterImgDB/59.jpg",
+    },
+    62:{
+        name:"Mano4",
+        img:"images/MonsterImgDB/59.jpg",
+    },
 }

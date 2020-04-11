@@ -9,6 +9,9 @@ let playerField = null;
 let opponentField = null;
 
 window.addEventListener('load',()=>{
+    document.querySelector("#endTurn").onclick=()=>{
+        action("END_TURN");
+    };
     playerField = document.querySelector("#PlayerField");
     playerField.onclick=()=>{
         clickPlayerBoard();
@@ -16,7 +19,7 @@ window.addEventListener('load',()=>{
     opponentField= document.querySelector("#OpponentField");
     opponentField.onclick=()=>{
         clickOpponentBoard(opponentBoardList);
-    }
+    };
     setTimeout(state,1000);
 })
 
@@ -29,7 +32,7 @@ const state =()=>{
         let reponse = msg;
         traitementHand(JSON.parse(reponse));
         traitementOppenent(JSON.parse(reponse)["opponent"]);
-        opponentBoardList = JSON.parse(reponse)["opponent"]["board"]
+        opponentBoardList = JSON.parse(reponse)["opponent"]["board"];
         traitementField(JSON.parse(reponse)["board"],opponentBoardList);
         setTimeout(state,1000);
     })
@@ -131,9 +134,13 @@ const clickPlayerBoard=()=>{
     RETURN: VRAIS/FAUX
 */
 const findTarget=(opponentFieldList,target)=>{
-    cardID={}
-    for(let index = 0;index<opponentFieldList.length;index++)
-        cardID[opponentFieldList[index].uid] = opponentFieldList[index][uid] // problem is still here
+    cardID={};
+    console.log(selectedCardID);
+    console.log(selectedTargetID);
+    for(let index = 0;index<opponentFieldList.length;index++){
+        console.log(opponentFieldList[index]);
+        cardID[opponentFieldList[index].uid] = opponentFieldList[index].uid // problem is still here
+    }
     if(target in cardID)
         return 1;
     return 0;
