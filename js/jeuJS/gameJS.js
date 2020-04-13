@@ -12,6 +12,10 @@ window.addEventListener('load',()=>{
     document.querySelector("#endTurn").onclick=()=>{
         action("END_TURN");
     };
+    document.querySelector("#opponentHero").onclick=()=>{
+        selectedTargetID = 0;
+        action("ATTACK");
+    }
     playerField = document.querySelector("#PlayerField");
     playerField.onclick=()=>{
         clickPlayerBoard();
@@ -54,7 +58,6 @@ const getNameAndImage=(cardId)=>{
     PARAM 1: LISTE BOARD DU JOUEUR PROVENNANT DE L'API
     PARAM 2: LISTE BOARD DU OPPONENT PROVENNANT DE L'API
 */
-// refactor into a function later -> repeated code
 const traitementField=(playerBoard,opponentBoard)=>{
     playerField.innerHTML = "";
     arrangeBoard(playerField,playerBoard);

@@ -25,6 +25,7 @@
             <div class="uid" style="display:none;"></div>
         </div>
     </template>
+    <div id="opponentHero"></div>
     <div id="endTurn">End Turn</div>
     <div id="BoardContainer">
         <div id="OpponentHand"></div>
