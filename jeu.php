@@ -25,13 +25,19 @@
             <div class="uid" style="display:none;"></div>
         </div>
     </template>
-    <div id="opponentHero"></div>
+    <div id="opponentHero" style="border-radius:150px"></div>
     <div id="endTurn">End Turn</div>
     <div id="BoardContainer">
-        <div id="OpponentHand"></div>
+        <div id="OpponentContainer">
+            <div id="OpponentHand"></div>
+            <div id="OpponentHP"></div>
+        </div>
         <div id="OpponentField"></div>
         <div id="PlayerField"></div>
-        <div id="PlayerHand"></div>
+        <div id="PlayerContainer">
+            <div id="PlayerHand"></div>
+            <div id="PlayerHP"></div>
+        </div>
     </div>
 </body>
 <?php

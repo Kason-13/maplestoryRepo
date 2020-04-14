@@ -3,7 +3,7 @@ let playFromHand = false;
 
 const arrangeBoard=(whichBoard,data)=>{
     const BoardLimit = 7;
-    const width = window.innerWidth / BoardLimit;
+    const width = whichBoard.offsetWidth / BoardLimit;
     for(let index = 0;index<BoardLimit;index++){
         if(index>=data.length){
             let div = document.createElement("div");
@@ -17,7 +17,7 @@ const arrangeBoard=(whichBoard,data)=>{
 
 const arrangeHand=(whichHand,data)=>{
     const handLimit = 8;
-    const width = window.innerWidth / handLimit;
+    const width = whichHand.offsetWidth / handLimit;
     for(let index  = 0;index<handLimit;index++){
         if(index >= data.length){
             let div = document.createElement("div");

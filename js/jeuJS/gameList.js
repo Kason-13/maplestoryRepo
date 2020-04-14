@@ -248,4 +248,33 @@ cardData={
         name:"Mano4",
         img:"images/MonsterImgDB/59.jpg",
     },
+    63:{
+        name:"Mano5",
+        img:"images/MonsterImgDB/59.jpg",
+    },
+    64:{
+        name:"Mano6",
+        img:"images/MonsterImgDB/59.jpg",
+    },
+    65:{
+        name:"Mano7",
+        img:"images/MonsterImgDB/59.jpg",
+    },
+    66:{
+        name:"Mano8",
+        img:"images/MonsterImgDB/59.jpg",
+    },
+    67:{
+        name:"Mano9",
+        img:"images/MonsterImgDB/59.jpg",
+    },
+    68:{
+        name:"Mano10",
+        img:"images/MonsterImgDB/59.jpg",
+    },
+    69:{
+        name:"Mano11",
+        img:"images/MonsterImgDB/59.jpg",
+    },
+
 }

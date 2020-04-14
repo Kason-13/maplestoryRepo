@@ -15,22 +15,34 @@ body,html{
     background-repeat: no-repeat;
     background-position: center;
 }
+#OpponentContainer,#PlayerContainer{
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+}
+#OpponentContainer{
+    grid-column: 1/5;
+    grid-row: 1/2;
+}
+#PlayerContainer{
+    grid-column: 1/5;
+    grid-row: 8/11;
+}
 #OpponentHand,#PlayerHand{
     display: grid;
+    grid-column: 1/10;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(8,1fr);
     background-color: rgba(35, 35, 35, 0.7);
     gap: 2px;
 }
 #OpponentHand{
-    grid-column: 1/5;
-    grid-row: 1/2;
     height: 10vh;
 }
 #PlayerHand{
-    grid-column: 1/5;
-    grid-row: 8/11;
     height: 30vh;
+}
+#OpponentHP,#PlayerHP{
+    grid-column: 10/11;
 }
 #OpponentField,#PlayerField{
     display: grid;
