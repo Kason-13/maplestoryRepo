@@ -5,6 +5,9 @@ let selectedCardID=null;
 let selectedCard = false;
 let selectedTargetID = null;
 
+let opponentHpNode = null;
+let playerHpNode = null;
+
 let playerField = null;
 let opponentField = null;
 
@@ -16,7 +19,11 @@ window.addEventListener('load',()=>{
         selectedTargetID = 0;
         action("ATTACK");
     }
+
+    playerHpNode = document.querySelector("#PlayerHP");
+    opponentHpNode = document.querySelector("#OpponentHP");
     playerField = document.querySelector("#PlayerField");
+    
     playerField.onclick=()=>{
         clickPlayerBoard();
     };
@@ -38,8 +45,18 @@ const state =()=>{
         traitementOppenent(JSON.parse(reponse)["opponent"]);
         opponentBoardList = JSON.parse(reponse)["opponent"]["board"];
         traitementField(JSON.parse(reponse)["board"],opponentBoardList);
+        setHp(opponentHpNode,playerHpNode,JSON.parse(reponse));
         setTimeout(state,1000);
     })
+}
+
+const setHp=(opponentNode,playerNode,data)=>{
+    playerNode.innerText = data.hp + " HP";
+    playerNode.innerHTML +="<br>";
+    playerNode.innerText += data.mp + " MP";
+    opponentNode.innerText = data.opponent.hp + " HP";
+    opponentNode.innerHTML += "<br>";
+    opponentNode.innerText += data.opponent.mp + " MP";
 }
 
 /* 

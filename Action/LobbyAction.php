@@ -8,17 +8,13 @@
 		}
 
 		protected function executeAction() {
+			$key = $_SESSION["key"];
 			if(!empty($_GET)){
 				$data["key"] = $_SESSION["key"];
-				$data["private-key"] = "";
 				$gotoJeu = false;
 				switch ($_GET["next"]) {
 					case 'practice':
 						$data["type"] = "TRAINING";
-						$gotoJeu = true;
-						break;
-					case 'play':
-						$data["type"] = "PVP";
 						$gotoJeu = true;
 						break;
 					case 'logout':
@@ -32,6 +28,6 @@
 					exit;
 				}
 			}
-			return [];
+			return compact("key");
 		}
 	}
