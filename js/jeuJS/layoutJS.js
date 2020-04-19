@@ -88,3 +88,18 @@ const appendCard=(data,index,leBoard,width)=>{
     div.querySelector(".cost").innerText = "COST: "+data[index].cost;
     leBoard.appendChild(div);
 }
+
+const attackAnimation=()=>{
+
+}
+
+const damagedAnimation=()=>{
+    
+}
+
+const modifyEndBox=(textString,textButton)=>{
+    document.querySelector("#WaitingBox").style.display = "block";
+    document.querySelector('#WaitingBox').querySelector("h2").innerText= textString;
+    document.querySelector('#WaitingBox').querySelector("#RespawnButton").innerText = textButton;
+    document.querySelector("#RespawnButton").style.display="block";
+}

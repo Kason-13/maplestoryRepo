@@ -15,13 +15,10 @@ const matchMaking=()=>{
         data: userData
     })
     .done(function(response){
-        if(response === '"CREATED_PVP"'){
-            document.querySelector("#buttonContainer").innerHTML = "<button id='LobbyButton'>CREATED PVP, EN ATTENTE D'UN JOUEUR</button>" ;
-        }else if(response == '"JOINED_PVP"'){
+        if(response === '"CREATED_PVP"' || response == '"JOINED_PVP"'){
             window.location.href='jeu.php';
         }else{
             document.querySelector("#buttonContainer").innerHTML = "<button id='LobbyButton'>"+response+"</button>" ;
         }
-        setTimeout(matchMaking,1000);
     })
 }

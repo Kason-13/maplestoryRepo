@@ -31,7 +31,7 @@ window.addEventListener('load',()=>{
     opponentField.onclick=()=>{
         clickOpponentBoard(opponentBoardList);
     };
-    setTimeout(state,1000);
+    state();
 })
 
 const state =()=>{
@@ -41,11 +41,20 @@ const state =()=>{
     })
     .done(function(msg){
         let reponse = msg;
-        traitementHand(JSON.parse(reponse));
-        traitementOppenent(JSON.parse(reponse)["opponent"]);
-        opponentBoardList = JSON.parse(reponse)["opponent"]["board"];
-        traitementField(JSON.parse(reponse)["board"],opponentBoardList);
-        setHp(opponentHpNode,playerHpNode,JSON.parse(reponse));
+        if(reponse == '"LAST_GAME_LOST"')
+            modifyEndBox("YOU LOST!","RESPAWN AT THE NEAREST TOWN");
+        else if(reponse == '"LAST_GAME_WON"')
+            modifyEndBox("YOU WON!","RETURN TO THE NEAREST TOWN AS THE CHAMPION");
+        else if(reponse == '"WAITING"')
+            document.querySelector("#WaitingBox").style.display = "block";
+        else{
+            document.querySelector("#WaitingBox").style.display = "none";
+            traitementHand(JSON.parse(reponse));
+            traitementOppenent(JSON.parse(reponse)["opponent"]);
+            opponentBoardList = JSON.parse(reponse)["opponent"]["board"];
+            traitementField(JSON.parse(reponse)["board"],opponentBoardList);
+            setHp(opponentHpNode,playerHpNode,JSON.parse(reponse));
+        }
         setTimeout(state,1000);
     })
 }
@@ -54,6 +63,9 @@ const setHp=(opponentNode,playerNode,data)=>{
     playerNode.innerText = data.hp + " HP";
     playerNode.innerHTML +="<br>";
     playerNode.innerText += data.mp + " MP";
+    playerNode.innerHTML +="<br>";
+    playerNode.innerText += "TIME: " + data.remainingTurnTime;
+    
     opponentNode.innerText = data.opponent.hp + " HP";
     opponentNode.innerHTML += "<br>";
     opponentNode.innerText += data.opponent.mp + " MP";
@@ -123,6 +135,8 @@ const traitementOppenent=(data)=>{
         div.style.color = "white";
         const textNode = document.createTextNode("MAGIX");
         div.appendChild(textNode);
+        div.style.backgroundColor="rgb(35,35,35)";
+        div.style.textAlign="center";
         document.getElementById("OpponentHand").appendChild(div);
     }
 }
@@ -158,8 +172,7 @@ const findTarget=(opponentFieldList,target)=>{
     console.log(selectedCardID);
     console.log(selectedTargetID);
     for(let index = 0;index<opponentFieldList.length;index++){
-        console.log(opponentFieldList[index]);
-        cardID[opponentFieldList[index].uid] = opponentFieldList[index].uid // problem is still here
+        cardID[opponentFieldList[index].uid] = opponentFieldList[index].uid
     }
     if(target in cardID)
         return 1;

@@ -29,17 +29,18 @@ body,html{
 }
 #OpponentHand,#PlayerHand{
     display: grid;
-    grid-column: 1/10;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(8,1fr);
     background-color: rgba(35, 35, 35, 0.7);
     gap: 2px;
 }
 #OpponentHand{
+    grid-column: 1/8;
     height: 10vh;
 }
 #PlayerHand{
     height: 30vh;
+    grid-column: 1/10;
 }
 #OpponentHP,#PlayerHP{
     grid-column: 10/11;
@@ -90,11 +91,7 @@ body,html{
 }
 
 #opponentHero{
-    position: absolute;
-    top: 0%;
-    left: 40%;
-    width: 340px;
-    height: 150px;
+    grid-column: 8/10;
     background-image: url("../images/classImage/Black_Mage.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;

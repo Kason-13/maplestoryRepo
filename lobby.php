@@ -7,6 +7,7 @@
     <script src="js/audioJS/lobbyAudio.js"></script>
     <script src="js/cssManip/js/jQuery.js"></script>
     <script src="js/cssManip/js/cssManip.js"></script>
+    <script src="js/lobbyChatBoxStyle.js"></script>
     <script src="js/TiledImage.js"></script>
     <script src="js/lobbyAnimation.js"></script>
     <script>
@@ -27,7 +28,7 @@
         </div>
     </div>
     <div id="container">
-        <iframe style="width:700px;height:240px;"
+        <iframe style="width:700px;height:240px;" onload="applyStyles(this)"
                 src="https://magix.apps-de-cours.com/server/#/chat/<?php
                     echo $data["key"];
                 ?>">
