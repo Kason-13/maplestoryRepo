@@ -62,8 +62,9 @@ body,html{
 }
 
 .Card{
-    background-image: url("../images/imgSrc/cardTemplate.png");
+    background-image: url("../images/imgSrc/cardTemplate2.png");
     background-size: 100% 100%;
+    background-color: rgba(35, 35, 35, 0.5);
     background-repeat: no-repeat;
     height: 100%;
     text-align: center;

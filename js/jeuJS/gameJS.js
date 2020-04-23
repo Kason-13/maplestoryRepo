@@ -11,6 +11,8 @@ let playerHpNode = null;
 let playerField = null;
 let opponentField = null;
 
+let shakedScreen = false;
+
 window.addEventListener('load',()=>{
     document.querySelector("#endTurn").onclick=()=>{
         action("END_TURN");
@@ -42,7 +44,12 @@ const state =()=>{
     .done(function(msg){
         let reponse = msg;
         if(reponse == '"LAST_GAME_LOST"')
+        {
+            if(shakedScreen == false)
+                $( "body" ).effect( "shake" );
             modifyEndBox("YOU LOST!","RESPAWN AT THE NEAREST TOWN");
+            shakedScreen = true;
+        }
         else if(reponse == '"LAST_GAME_WON"')
             modifyEndBox("YOU WON!","RETURN TO THE NEAREST TOWN AS THE CHAMPION");
         else if(reponse == '"WAITING"')
@@ -198,11 +205,17 @@ const validTarget=(opponentBoard)=>{
 const clickOpponentBoard=(opponentList)=>{
     validAction = validTarget(opponentList);
     if(validAction)
+    {
         action("ATTACK");
+    }
     selectedTargetID = null;
     selectedCardID = null;
 }
 
+/* METHOD POUR CONSTRUCTION DES DATAS QU'ON VA UTILISER POUR APPELLER L'API
+    FAIT AUSSI UN APPELLE A L'API
+    PARAM: L'ACTION
+*/
 const action=(action)=>{
     passedData={}
     switch (action) {
@@ -236,7 +249,7 @@ const action=(action)=>{
         data:passedData
     })
     .done(function(msg){
-        console.log(msg);
+        console.log(msg)
     })
 }
 

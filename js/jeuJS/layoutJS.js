@@ -66,10 +66,10 @@ const appendCard=(data,index,leBoard,width)=>{
     cardNameAndImage = getNameAndImage(data[index].id);
     let html = document.getElementById("CardTemplate").innerHTML;
     let div = document.createElement("div");
+    div.style.height="100%";
     div.innerHTML = html;
     div.style.width = width+"px";
-    div.style.color="red";
-    div.querySelector("h2").innerText = cardNameAndImage.name;
+    div.querySelector("h3").innerText = cardNameAndImage.name;
     div.querySelector(".uid").innerText = data[index].uid;
     if(leBoard.id == "PlayerHand" || leBoard.id == "PlayerField")
         addClickListener(div,selectCardID,index,div.querySelector(".uid").innerText,leBoard.id)
@@ -80,21 +80,17 @@ const appendCard=(data,index,leBoard,width)=>{
         div.style.border = "4px solid skyblue";
     if(data[index].mechanics.length>0){
         for(let mechanicsIndex = 0;mechanicsIndex<data[index].mechanics.length;mechanicsIndex++)
+        {
             div.querySelector(".ability").innerText += data[index].mechanics[mechanicsIndex];
-            div.querySelector(".ability").innerHTML+="<br>"
+            if(mechanicsIndex==data[index].mechanics.length-1)
+                break;
+            div.querySelector(".ability").innerText+=" & "
+        }
     }
     div.querySelector(".hp").innerText = "HP: " + data[index].hp;
     div.querySelector(".atk").innerText = "ATK: "+data[index].atk;
     div.querySelector(".cost").innerText = "COST: "+data[index].cost;
     leBoard.appendChild(div);
-}
-
-const attackAnimation=()=>{
-
-}
-
-const damagedAnimation=()=>{
-    
 }
 
 const modifyEndBox=(textString,textButton)=>{

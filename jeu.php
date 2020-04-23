@@ -4,24 +4,29 @@
     $jeuAction = new JeuAction();
     $data = $jeuAction->execute();
 ?>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="js\cssManip\js\jQuery.js"></script>
     <script src="js/jeuJS/layoutJS.js"></script>
     <script src="js/jeuJS/gameList.js"></script>
     <script src="js/jeuJS/gameJS.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="css/jeu.css">
     <title>Jeu</title>
 </head>
 <body>
     <template id="CardTemplate">
         <div class="Card">
-            <h2></h2>
+            <h3 style="padding-top:1.5em;color:steelblue"></h3>
             <div style="width:150px; height:100px;">
                 <img src="" id="CardImage">
             </div>
-            <div class="ability"></div>
-            <div class="hp"></div>
-            <div class="atk"></div>
-            <div class="cost"></div>
+            <div style="border-top:1px solid whitesmoke;margin-top:5px;">
+                <div class="cost" style="color:tomato"></div>
+                <div class="ability"style="color:palegoldenrod"></div>
+                <div class="hp" style="color:red"></div>
+                <div class="atk"style="color:tomato"></div>
+            </div>
             <div class="uid" style="display:none;"></div>
         </div>
     </template>
