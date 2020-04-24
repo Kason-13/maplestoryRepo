@@ -1,6 +1,8 @@
 let glowIndex = null;
 let playFromHand = false;
 
+let errorBoxDisplayTime = 6000;
+
 const arrangeBoard=(whichBoard,data)=>{
     const BoardLimit = 7;
     const width = whichBoard.offsetWidth / BoardLimit;
@@ -98,4 +100,11 @@ const modifyEndBox=(textString,textButton)=>{
     document.querySelector('#WaitingBox').querySelector("h2").innerText= textString;
     document.querySelector('#WaitingBox').querySelector("#RespawnButton").innerText = textButton;
     document.querySelector("#RespawnButton").style.display="block";
+}
+
+const showErrorBox=async(errorString)=>{
+    let boxBox = document.querySelector("#WaitingBox");
+    boxBox.style.display = "block";
+    boxBox.querySelector("h2").innerText = errorString;
+    boxBox.querySelector("#RespawnButton").style.display = "none";
 }

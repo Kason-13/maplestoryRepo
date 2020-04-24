@@ -3,4 +3,3 @@
     $ajaxLobbyAction = new AjaxLobbyAction();
     $data = $ajaxLobbyAction->execute();
     echo json_encode($data["returned"]);
-?>

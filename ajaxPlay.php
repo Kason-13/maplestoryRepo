@@ -3,4 +3,3 @@
     $ajaxAction = new AjaxAction();
     $data = $ajaxAction->execute();
     echo json_encode($data["returned"]);
-?>

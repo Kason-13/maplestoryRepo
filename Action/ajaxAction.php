@@ -19,7 +19,6 @@
                     $data["targetuid"] = $_POST["targetUid"];
                     break;
             }
-            var_dump($data);
             $data["key"] = $_SESSION["key"];
             $data["type"] = $_POST["which"];
             $returned = parent::callAPI("games/action",$data);

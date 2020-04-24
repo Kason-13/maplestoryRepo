@@ -28,7 +28,7 @@
         </div>
     </div>
     <div id="container">
-        <iframe style="width:700px;height:240px;" onload="applyStyles(this)"
+        <iframe style="width:900px;height:240px;" onload="applyStyles(this)"
                 src="https://magix.apps-de-cours.com/server/#/chat/<?php
                     echo $data["key"];
                 ?>">

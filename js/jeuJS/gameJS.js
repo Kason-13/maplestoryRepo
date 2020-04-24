@@ -13,6 +13,14 @@ let opponentField = null;
 
 let shakedScreen = false;
 
+let errorList={
+    "CARD_IS_SLEEPING": "VOTRE CARTE N'EST PAS PRET",
+    "MUST_ATTACK_TAUNT_FIRST": "VOUS DEVEZ ATTACKER L'ENNEMY AVEC TAUNT EN PREMIER",
+    "WRONG_TURN":"CE N'EST PAS VOTRE TOURS",
+    "CARD_NOT_FOUND":"CARTE NON DISPONIBLE",
+    "NOT_ENOUGH_ENERGY": "PAS ASSEZ D'ENERGY POUR JOUER LA CARTE"
+}
+
 window.addEventListener('load',()=>{
     document.querySelector("#endTurn").onclick=()=>{
         action("END_TURN");
@@ -176,8 +184,6 @@ const clickPlayerBoard=()=>{
 */
 const findTarget=(opponentFieldList,target)=>{
     cardID={};
-    console.log(selectedCardID);
-    console.log(selectedTargetID);
     for(let index = 0;index<opponentFieldList.length;index++){
         cardID[opponentFieldList[index].uid] = opponentFieldList[index].uid
     }
@@ -249,7 +255,19 @@ const action=(action)=>{
         data:passedData
     })
     .done(function(msg){
-        console.log(msg)
+        if(action == "ATTACK"){
+            if(!errorList.hasOwnProperty(JSON.parse(msg)))
+                $( "body" ).effect( "shake" );
+            if(errorList.hasOwnProperty(JSON.parse(msg)))
+                showErrorBox(errorList[JSON.parse(msg)]);
+        }
+        if(action == "PLAY")
+        {
+            if(errorList.hasOwnProperty(JSON.parse(msg)))
+                showErrorBox(errorList[JSON.parse(msg)]);
+        }
     })
 }
+
+
 
