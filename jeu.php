@@ -40,6 +40,7 @@
                         display:none"
                         onclick="window.location.href='lobby.php'">RESPAWN AT THE NEAREST TOWN</button>
     </div>
+    <div id="heroPower">Pouvoir</div>
     <div id="endTurn">End Turn</div>
     <div id="BoardContainer">
         <div id="OpponentContainer">

@@ -34,34 +34,16 @@ const arrangeHand=(whichHand,data)=>{
 /* 
     ajout de event listener pour les cartes en main et sur le field du joueur
 */
-const addClickListener=(div,toAddFunction,index,uid,divID)=>{
+const addClickListener=(div,toAddFunction,uid,divID)=>{
     div.onclick=function(){
-        clearGlow();
         if(divID == "PlayerField"){
             playFromHand = false;
         }
         else{
             playFromHand = true;
-            addGlow(index);
         }
         toAddFunction(uid);
     }
-}
-/* 
-    methode pour clear le glowing effect d'un carte selected si on click sur une carte differente de
-    la main ou du field
-*/
-const clearGlow=()=>{
-    glowIndex = null
-    document.querySelectorAll("div").forEach(element => {
-        element.style.border = "none";
-    });
-}
-/* 
-    methode pour ajouter un glowing effect quand on click sur la carte selected en main ou du field du joueur
-*/
-const addGlow=(index)=>{
-    glowIndex = index;
 }
 
 const appendCard=(data,index,leBoard,width)=>{
@@ -74,15 +56,21 @@ const appendCard=(data,index,leBoard,width)=>{
     div.querySelector("h3").innerText = cardNameAndImage.name;
     div.querySelector(".uid").innerText = data[index].uid;
     if(leBoard.id == "PlayerHand" || leBoard.id == "PlayerField")
-        addClickListener(div,selectCardID,index,div.querySelector(".uid").innerText,leBoard.id)
+        addClickListener(div,selectCardID,div.querySelector(".uid").innerText,leBoard.id)
     else
-        addClickListener(div,selectTargetID,index,div.querySelector(".uid").innerText)
+        addClickListener(div,selectTargetID,div.querySelector(".uid").innerText)
     div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
-    if(glowIndex == index && leBoard.id == "PlayerHand")
+    if(selectedCardID != null && selectedCardID == data[index].uid)
         div.style.border = "4px solid skyblue";
     if(data[index].mechanics.length>0){
         for(let mechanicsIndex = 0;mechanicsIndex<data[index].mechanics.length;mechanicsIndex++)
         {
+            if(data[index].mechanics[mechanicsIndex] == "Taunt")
+            {
+                div.style.backgroundImage = "url('images/imgSrc/cardTemplate2Taunt.png')";
+                div.style.backgroundSize = "cover";
+                div.style.backgroundRepeat = "no-repeat";
+            }
             div.querySelector(".ability").innerText += data[index].mechanics[mechanicsIndex];
             if(mechanicsIndex==data[index].mechanics.length-1)
                 break;

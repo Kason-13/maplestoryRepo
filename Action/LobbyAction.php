@@ -9,6 +9,7 @@
 
 		protected function executeAction() {
 			$key = $_SESSION["key"];
+			$username = $_SESSION["username"];
 			if(!empty($_GET)){
 				$data["key"] = $_SESSION["key"];
 				$gotoJeu = false;
@@ -28,6 +29,6 @@
 					exit;
 				}
 			}
-			return compact("key");
+			return compact("key","username");
 		}
 	}

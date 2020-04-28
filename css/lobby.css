@@ -22,7 +22,7 @@ iframe{
 	top:40%;
 	left:40%;
 	width:20em;
-	height:10em;
+	height:12em;
 	background:rgb(35,35,35,0.6);
 	color:white;
 	border-radius: 5px;
@@ -30,6 +30,13 @@ iframe{
 #choiceContainer h1{
 	text-align:center;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#choiceContainer h3{
+	text-align:center;
+}
+#buttonContainer{
+	text-align:center;
+	padding-top:1.5em;
 }
 #LobbyButton{
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

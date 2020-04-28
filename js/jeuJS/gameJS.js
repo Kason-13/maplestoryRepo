@@ -25,6 +25,9 @@ window.addEventListener('load',()=>{
     document.querySelector("#endTurn").onclick=()=>{
         action("END_TURN");
     };
+    document.querySelector("#heroPower").onclick=()=>{
+        action("HERO_POWER");
+    };
     document.querySelector("#opponentHero").onclick=()=>{
         selectedTargetID = 0;
         action("ATTACK");
@@ -173,7 +176,11 @@ const playSelectedCard=()=>{
 const clickPlayerBoard=()=>{
     summonCard = playSelectedCard();
     if(summonCard)
+    {
         action("PLAY");
+        selectedTargetID = null;
+        selectedCardID = null;
+    }
 }
 
 /* 

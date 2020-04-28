@@ -21,7 +21,8 @@
     <canvas id="lobbyAnimation" width="1920px"height="720px;"></canvas>
     <div id="choiceContainer">
         <h1>Menu</h1>
-        <div id="buttonContainer" style="text-align:center;padding-top:1.5em;">
+        <h3>Logged as <?= $data["username"]?></h3>
+        <div id="buttonContainer">
             <button id="LobbyButton">Jouer</button>
             <button id="LobbyButton" onclick="window.location.href='lobby.php?next=practice'">Pratique</button>
             <button id="LobbyButton" onclick="window.location.href='lobby.php?next=logout'">Quitter</button>
