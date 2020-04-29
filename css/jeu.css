@@ -116,5 +116,5 @@ body,html{
     text-align: center;
     width: 50%;
     margin: auto;
-    background: slategrey;
+    background: rgba(112,128,144,0.5);
 }
