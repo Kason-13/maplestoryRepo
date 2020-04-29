@@ -13,6 +13,11 @@ let opponentField = null;
 
 let shakedScreen = false;
 
+let firstState = true;
+
+//for audio
+let playing = false;
+
 let errorList={
     "CARD_IS_SLEEPING": "VOTRE CARTE N'EST PAS PRET",
     "MUST_ATTACK_TAUNT_FIRST": "VOUS DEVEZ ATTACKER L'ENNEMY AVEC TAUNT EN PREMIER",
@@ -37,6 +42,8 @@ window.addEventListener('load',()=>{
     opponentHpNode = document.querySelector("#OpponentHP");
     playerField = document.querySelector("#PlayerField");
     
+    loadBackground();
+
     playerField.onclick=()=>{
         clickPlayerBoard();
     };
@@ -54,6 +61,12 @@ const state =()=>{
     })
     .done(function(msg){
         let reponse = msg;
+        if(reponse != '"WAITING"' && firstState)
+        {
+            firstState = false;
+            loadHeroPicture(JSON.parse(reponse)["opponent"]["heroClass"])
+        }
+
         if(reponse == '"LAST_GAME_LOST"')
         {
             if(shakedScreen == false)
@@ -76,6 +89,98 @@ const state =()=>{
         setTimeout(state,1000);
     })
 }
+
+const loadAudio=(index)=>{
+    let audioUrl = "";
+    switch (index) {
+        case 0:
+            audioUrl="audio/arena/zakum.mp3";
+            break;
+        case 1:
+            audioUrl="audio/arena/templeOfTime.mp3";
+            break;
+        case 2:
+            audioUrl="audio/arena/elluel.mp3";
+            break;
+        case 3:
+            audioUrl="audio/arena/huntingGround.mp3"
+            break;
+        default:
+            audioUrl="audio/arena/zakum.mp3";
+            break;
+    }
+
+    document.addEventListener("click",()=>{
+        if(!playing){
+             let audio = new Audio();
+             audio.src = audioUrl;
+             audio.volume=0.2;
+             audio.muted = false;
+             audio.play();
+             playing = !playing;
+        }
+    }) 
+}
+
+// pour charger un different background randomly par partie
+const loadBackground=()=>{
+    //returns between 0 and 3
+    let index = Math.floor(Math.random() * Math.floor(4));
+    let arenaBackground = document.querySelector("#BoardContainer");
+    switch (index) {
+        case 0:
+            arenaBackground.style.backgroundImage="url('images/arenaBackground/zakumsAltar.png')";
+            break;
+        case 1:
+            arenaBackground.style.backgroundImage="url('images/arenaBackground/templeOfTimeArena.jpg')";
+            break;
+        case 2:
+            arenaBackground.style.backgroundImage="url('images/arenaBackground/elluel.png')";
+            break;
+        case 3:
+            arenaBackground.style.backgroundImage="url('images/arenaBackground/trainingGround.jpg')";
+            break;
+        default:
+            arenaBackground.style.backgroundImage="url('images/arenaBackground/zakumsAltar.png')";
+            break;
+    }
+    loadAudio(index);
+}
+
+// changer le picture de l'adversaire selon le hero
+const loadHeroPicture=(hero)=>{
+    let heroIMG = document.querySelector("#opponentHero");
+    switch (hero) {
+        case "Hunter":
+            heroIMG.style.backgroundImage = "url('images/classImage/Hunter.jpg')";
+            break;
+        case "Warrior":
+            heroIMG.style.backgroundImage = "url('images/classImage/Warrior.jpg')";
+            break;
+        case "Priest":
+            heroIMG.style.backgroundImage = "url('images/classImage/priest.jpg')";
+            break;
+        case "Warlock":
+            heroIMG.style.backgroundImage = "url('images/classImage/Black_Mage.png')";
+            break;
+        case "Rogue":
+            heroIMG.style.backgroundImage = "url('images/classImage/rogue.jpg')";
+            break;
+        case "Paladin":
+            heroIMG.style.backgroundImage = "url('images/classImage/paladin.jpg')";
+            break;
+        case "Shaman":
+            heroIMG.style.backgroundImage = "url('images/classImage/shaman.jpg')";
+            break;
+        case "Druid":
+            heroIMG.style.backgroundImage = "url('images/classImage/druid.jpg')";
+            break;
+        default:
+            heroIMG.style.backgroundImage = "url('images/classImage/Black_Mage.png')";
+            break;
+    }
+}
+
 
 const setHp=(opponentNode,playerNode,data)=>{
     playerNode.innerText = data.hp + " HP";

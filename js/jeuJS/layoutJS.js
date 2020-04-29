@@ -46,6 +46,8 @@ const addClickListener=(div,toAddFunction,uid,divID)=>{
     }
 }
 
+
+/* methode qui manipule les divs pour afficher les cartes de la partie */
 const appendCard=(data,index,leBoard,width)=>{
     cardNameAndImage = getNameAndImage(data[index].id);
     let html = document.getElementById("CardTemplate").innerHTML;
@@ -53,13 +55,22 @@ const appendCard=(data,index,leBoard,width)=>{
     div.style.height="100%";
     div.innerHTML = html;
     div.style.width = width+"px";
-    div.querySelector("h3").innerText = cardNameAndImage.name;
     div.querySelector(".uid").innerText = data[index].uid;
     if(leBoard.id == "PlayerHand" || leBoard.id == "PlayerField")
         addClickListener(div,selectCardID,div.querySelector(".uid").innerText,leBoard.id)
     else
         addClickListener(div,selectTargetID,div.querySelector(".uid").innerText)
-    div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
+    if(cardNameAndImage>69){
+        cardNameAndImage={
+            name:"Just another Mano",
+            imgSrc:"images/MonsterImgDB/59.jpg"
+        }
+        div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
+    }
+    else{
+        div.querySelector("#CardImage").style.backgroundImage = "url("+cardNameAndImage.imgSrc+")";
+    }
+    div.querySelector("h3").innerText = cardNameAndImage.name;
     if(selectedCardID != null && selectedCardID == data[index].uid)
         div.style.border = "4px solid skyblue";
     if(data[index].mechanics.length>0){
