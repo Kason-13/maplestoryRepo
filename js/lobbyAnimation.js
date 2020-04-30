@@ -14,6 +14,8 @@ window.addEventListener("load",()=>{
 	spriteList.push(new Walker(1920,680));
 	spriteList.push(new WalkerPet(2000,680));
 	spriteList.push(new Dropper(1650,455));
+	spriteList.push(new WalkerTwo(0,680));
+	spriteList.push(new ZombieShroom(-150,680))
 	
 	menuDiv = document.getElementById("choiceContainer");
 	tick();
@@ -136,6 +138,74 @@ class WalkerPet{
 				this.tiledImage.changeMinMaxInterval(0,7);
 			}
 		}
+		this.tiledImage.tick(this.x,this.y,ctx);
+	}
+}
+
+class WalkerTwo{
+	constructor(x,y){
+		this.x=x;
+		this.y=y;
+
+		this.leftOffSide = -150;
+		this.rightOffSide = 2070;
+
+		this.speed = 2;
+
+		this.columnCount = 4;
+		this.rowCount = 1;
+		this.refreshDelay = 80;
+		this.scale = 1.2;
+		this.columnLoop = true;
+		this.tiledImage = new TiledImage("images/sprites/blueGuyWalk.png",this.columnCount,this.rowCount,this.refreshDelay,this.columnLoop,this.scale);
+		this.tiledImage.changeRow(0);
+		this.tiledImage.setFlipped(true);
+		this.tiledImage.changeMinMaxInterval(0,3);
+	}
+	tick(){
+		if(this.x>this.rightOffSide){
+			this.tiledImage.setFlipped(false);
+			this.speed = -2;
+		}
+		if(this.x<this.leftOffSide){
+			this.tiledImage.setFlipped(true);
+			this.speed = 2;
+		}
+		this.x+=this.speed;
+		this.tiledImage.tick(this.x,this.y,ctx);
+	}
+}
+
+class ZombieShroom{
+	constructor(x,y){
+		this.x=x;
+		this.y=y;
+
+		this.leftOffSide = -150;
+		this.rightOffSide = 2070;
+
+		this.speed = 2;
+
+		this.columnCount = 4;
+		this.rowCount = 1;
+		this.refreshDelay = 80;
+		this.scale = 1.2;
+		this.columnLoop = true;
+		this.tiledImage = new TiledImage("images/sprites/zombieShroomSprite.png",this.columnCount,this.rowCount,this.refreshDelay,this.columnLoop,this.scale);
+		this.tiledImage.changeRow(0);
+		this.tiledImage.setFlipped(true);
+		this.tiledImage.changeMinMaxInterval(0,3);
+	}
+	tick(){
+		if(this.x>this.rightOffSide){
+			this.tiledImage.setFlipped(false);
+			this.speed = -2;
+		}
+		if(this.x<this.leftOffSide){
+			this.tiledImage.setFlipped(true);
+			this.speed = 2;
+		}
+		this.x+=this.speed;
 		this.tiledImage.tick(this.x,this.y,ctx);
 	}
 }
