@@ -1,4 +1,4 @@
-maplestory themed card game
+maplestory themed card game with similar mechanics to heartstone
 
 ![Main menu](https://github.com/jj0309/portfolio/blob/master/contentData/ProjectImg/maplestory/maple1.png)
 ![Main menu](https://github.com/jj0309/portfolio/blob/master/contentData/ProjectImg/maplestory/maple2.png)
